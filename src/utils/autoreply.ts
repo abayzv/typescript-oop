@@ -22,9 +22,8 @@ class AutoReply {
   async send() {
     await this.getReply();
 
-    const message = this.reply.find(
-      (reply) => reply.message.toLowerCase() === this.message.toLowerCase()
-    );
+    const message = this.findReply();
+
     if (message) {
       logger.info(`message found: ${message.reply}`);
       logger.info("sending reply");
@@ -37,6 +36,12 @@ class AutoReply {
     } else {
       logger.info("message not found");
     }
+  }
+
+  findReply() {
+    return this.reply.find(
+      (reply) => reply.message.toLowerCase() === this.message.toLowerCase()
+    );
   }
 
   async getReply() {
