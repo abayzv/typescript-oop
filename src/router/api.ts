@@ -8,6 +8,7 @@ const router = express.Router();
 router.post("/api/wa/connect", waController.connectToWA);
 router.get("/api/wa/status", waController.getStatus);
 router.get("/api/wa/client-info", waController.getClientInfo);
+router.get("/api/wa/session", waController.getSession);
 
 // Message Routes
 router.post("/api/send-message", messageController.sendMessage);

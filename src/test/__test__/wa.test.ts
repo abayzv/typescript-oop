@@ -31,4 +31,47 @@ describe("POST /api/wa/connect", () => {
     expect(result.status).toBe(400);
     expect(result.body.error).toBeDefined();
   });
+
+  it("should return all session from user", async () => {
+    const body1 = {
+      user_id: "123456",
+      client_id: "aji",
+    };
+
+    const body2 = {
+      user_id: "123456",
+      client_id: "bayu",
+    };
+
+    await supertest(web).post("/api/wa/connect").send(body1);
+    await supertest(web).post("/api/wa/connect").send(body2);
+
+    const result = await supertest(web).get("/api/wa/session?user_id=123456");
+
+    expect(result.status).toBe(200);
+    expect(result.body.message).toBe("success");
+    expect(result.body.data.length).toBe(2);
+  });
+
+  it("should client not found", async () => {
+    const body = {
+      user_id: "123456",
+      client_id: "aji",
+    };
+
+    await supertest(web).post("/api/wa/connect").send(body);
+
+    const body2 = {
+      user_id: "123456",
+      client_id: "zizi",
+    };
+
+    const result = await supertest(web).get(
+      `/api/wa/status?user_id=${body2.user_id}&client_id=${body2.client_id}`
+    );
+
+    expect(result.status).toBe(404);
+    expect(result.body.error).toBeDefined();
+    expect(result.body.error).toBe("Client not found");
+  });
 });

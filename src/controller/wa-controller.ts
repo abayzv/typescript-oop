@@ -32,4 +32,13 @@ const getClientInfo = async (
   }
 };
 
-export default { connectToWA, getStatus, getClientInfo };
+const getSession = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await waServices.getSession(req);
+    res.status(200).send({ message: "success", data: result });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default { connectToWA, getStatus, getClientInfo, getSession };

@@ -5,4 +5,8 @@ const waSchema = Joi.object({
   client_id: Joi.string().required(),
 });
 
-export { waSchema };
+const sessionSchema = Joi.object({
+  user_id: Joi.string().required(),
+});
+
+export { waSchema, sessionSchema };
