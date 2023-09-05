@@ -1,5 +1,6 @@
 import { Client, LocalAuth, ClientInfo } from "whatsapp-web.js";
 import { logger } from "../app/logging";
+import AutoReply from "./autoreply";
 
 class WAClient {
   user_id: string;
@@ -36,7 +37,7 @@ class WAClient {
 
     this.client.on("message", (msg) => {
       logger.info("MESSAGE RECEIVED", msg);
-      msg.reply("Halo");
+      new AutoReply(msg.body, msg.from, this.client);
     });
 
     this.client.initialize();
