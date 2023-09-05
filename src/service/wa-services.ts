@@ -6,8 +6,7 @@ import { logger } from "../app/logging";
 import { StatusParams } from "../types/wa";
 import Session from "../utils/session";
 import { ErrorResponse } from "../error/error-response";
-
-const session = new Session();
+import { session } from "../app/session";
 
 const connectToWA = async (request: Request) => {
   const { user_id, client_id } = validate(waSchema, request);
