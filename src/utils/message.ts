@@ -30,7 +30,7 @@ class SendMessage {
   }
 
   async sendButtonsMessage(buttons: Buttons) {
-    await this.client.sendMessage(this.to, buttons);
+    const res = await this.client.sendMessage(this.to, buttons);
   }
 }
 
