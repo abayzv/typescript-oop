@@ -12,7 +12,7 @@ router.get("/api/wa/session", waController.getSession);
 
 // Message Routes
 router.post("/api/send-message", messageController.sendMessage);
-router.post("/api/send-buttons-message", messageController.sendButtonsMessage);
+router.post("/api/send-buttons", messageController.sendButtonsMessage);
 router.post("/api/send-media", messageController.sendMediaMessage);
 
 export { router };
