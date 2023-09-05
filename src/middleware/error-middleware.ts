@@ -12,7 +12,7 @@ const errorMiddleware = (
   if (err instanceof ErrorResponse) {
     res.status(err.status).json({ error: err.message }).end();
   } else {
-    res.status(500).json({ error: "Internal Server Error" }).end();
+    res.status(500).json({ error: err.message }).end();
   }
 };
 
