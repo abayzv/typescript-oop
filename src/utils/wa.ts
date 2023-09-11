@@ -15,10 +15,7 @@ class WAClient {
     this.user_id = user_id;
     this.client_id = client_id;
     this.client = new Client({
-      puppeteer: {
-        headless: true,
-        executablePath: '/usr/bin/google-chrome'
-      },
+      puppeteer: { headless: true },
       authStrategy: new LocalAuth({ clientId: user_id + "_" + client_id }),
     });
 
