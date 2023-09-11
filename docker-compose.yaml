@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  wagateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/wa-gateway
+      - /wa-gateway/node_modules
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    command: npm run dev
+    env_file:
+      - .env
