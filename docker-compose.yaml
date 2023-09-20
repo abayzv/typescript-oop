@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  wagateway:
+  api:
     build:
       context: .
       dockerfile: Dockerfile
